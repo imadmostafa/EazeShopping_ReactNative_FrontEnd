@@ -15,6 +15,7 @@ import { Avatar } from 'react-native-paper';
 
 import { Searchbar } from 'react-native-paper';
 const AllOrdersScreen_Cashier = ({route,navigation}) => {
+
     //snackbar
     const [visible, setVisible] = React.useState(false);
     const onToggleSnackBar = () => setVisible(!visible);
@@ -25,7 +26,7 @@ const AllOrdersScreen_Cashier = ({route,navigation}) => {
     const onChangeSearch = query => setSearchQuery(query);
 
     const [members, setMembers] = useState(null);
-//add search bar and remove pagination , plus scrollable view ;
+
 
 
 let {user}=useContext(AuthContext);
@@ -64,7 +65,7 @@ function takeorder(id){
           }//end of fetch members
 
 
-          //useFocusEffect
+         
           useFocusEffect(
             React.useCallback(() => {
               // Do something when the screen is focused

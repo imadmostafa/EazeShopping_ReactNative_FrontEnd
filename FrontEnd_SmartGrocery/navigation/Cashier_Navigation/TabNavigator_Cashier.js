@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import MapScreen_Cashier from "./MapScreen_Cashier";
 import AllOrdersScreen_Cashier from "./AllOrdersScreen_Cashier";
-
 import OrdersStackNavigator from './OrdersStackNavigator';
 const Tab = createBottomTabNavigator();
 

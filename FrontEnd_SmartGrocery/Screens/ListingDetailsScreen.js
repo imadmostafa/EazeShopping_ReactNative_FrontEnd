@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet ,Button} from "react-native";
+import { View, Image, StyleSheet, Button } from "react-native";
 
 import colors from "../config/colors";
 import ListItem from "../Components/lists/ListItem";
@@ -10,12 +10,10 @@ import API from '../API_ReactNative/API';
 
 
 
-function ListingDetailsScreen({ route ,navigation}) {
+function ListingDetailsScreen({ route, navigation }) {
   const listing = route.params;
 
-
-
- async function deleteproduct(id) {
+  async function deleteproduct(id) {
 
     API.deleteproduct(id).then(res => {
       const result = res.data;
@@ -23,31 +21,29 @@ function ListingDetailsScreen({ route ,navigation}) {
       if (res.data.success == false) {
         alert('failed delete');
       } else {//else if fetch successfully done ,
-        
-       
-       
+
+
+
       }
     }).catch(error => console.log("error", error));
 
   }//end of deleteproduct by id
 
 
-
-
   return (
     <View>
-      <Image style={styles.image} source={{uri:listing.path}} />
+      <Image style={styles.image} source={{ uri: listing.path }} />
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{listing.name}</Text>
         <Text style={styles.price}>${listing.price}</Text>
         <Text style={styles.description}>Description: {listing.description}</Text>
         <View style={styles.userContainer}>
-          
-          <AppButton title="Delete" onPress={()=>{
+
+          <AppButton title="Delete" onPress={() => {
             deleteproduct(listing.id);
             console.log('success');
             navigation.navigate("Listings");
-          }}/>
+          }} />
         </View>
       </View>
     </View>
@@ -72,8 +68,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "500",
   },
-  description:{
-   color:colors.medium
+  description: {
+    color: colors.medium
   },
   userContainer: {
     marginVertical: 40,

@@ -28,27 +28,10 @@ import {ThemeContext} from './FrontEnd_SmartGrocery/Contexts_Settings/ThemeConte
 export default function App() {
  const [fetchedcategories,setFetchedCategories]=useState([]);
  
- function fetchcategories_frombackend(){
-  API.getCategories().then(res => {
-      const result = res.data.categories;
-      console.log("RESULT: ", result);
-      alert(result[1].name);
-     if(res.data.success==false){
-     }else{
-      //setCategories(res.data.categories);
-      let tempholder_categories=res.data.categories;
-      tempholder_categories.unshift({id:0,name:'Any'});//this will add to first of arry and push
-      console.log('muttaed categ',tempholder_categories);
-     setFetchedCategories(tempholder_categories);
-     }
-  }).catch(error => console.log("error",error));
- }//end of fetchCategories from backend
 
- useEffect(() => {
- // fetchcategories_frombackend();
-}, []);
 const[firstname,setFirstName]=useState('');
 const[firstname2,setFirstName2]=useState('');
+
 const getData = async () => {
   try {
     const value = await AsyncStorage.getItem('key1');
@@ -61,6 +44,7 @@ const getData = async () => {
     // error reading value
   }
 }
+
 const storeData = async (value) => {
   try {
     await AsyncStorage.setItem('key1', value)
@@ -68,7 +52,7 @@ const storeData = async (value) => {
     // saving error
   }
 }
-//storeData('hello there');
+
 console.log('data stored');
 let vv=getData();
 console.log('now get value');
@@ -77,7 +61,7 @@ setStringValue = async (value) => {
   try {
     await AsyncStorage.setItem('key', value)
   } catch(e) {
-    // save error
+    
   }
 
   console.log('Done.')
@@ -89,44 +73,9 @@ getMyStringValue = async () => {
   } catch(e) {
     // read error
   }
-
   console.log('Done.')
-
 }
-const categories = [
-  { label: "Furniture", value: 1 },
-  { label: "Clothing", value: 2 },
-  { label: "Cameras", value: 3 },
-];
-const category_initial={
-  id:0,
-  name:'food'
-}
-const[category,setCategory]=useState(category_initial);
-//I18nManager.allowRTL(false);
-//I18nManager.forceRTL(false);
-if(I18nManager.isRTL){
-  console.log('ture');
-}else{
-  console.log('false no rtl');
-}
-function onChangeImage(){
-  
-}
-const theme = {
-  
-  colors: {
-    
-    primary: '#3498db',
-    accent: '#f1c40f',
-  },
-};
-if(true){
-
-
-
-
-  const[darkState,setDarkState]=useState(false);
+  const[darkState,setDarkState]=useState(false);//for dark theme control context 
   return (
     <ThemeContext.Provider value={{darkState,setDarkState}}>
    
@@ -135,55 +84,7 @@ if(true){
     
     </ThemeContext.Provider>
   )
-}else{
-
-
-  return (
-    <Screen style={styles.screen}>
-   <Button title="hello"></Button>
-     <AppButton onPress={()=>{
-       let v=firstname2;
-       console.log(firstname2);
-     }} title="hello"></AppButton>
-     <AppButton onPress={()=>setStringValue('hello')} title="hello"></AppButton>
-     <FlatList
-        data={fetchedcategories}
-        keyExtractor={(fetchedcategories) => fetchedcategories.id.toString()}
-        renderItem={({ item }) => (
-    
-          <Text> {item.id}
-            {item.name}</Text>
-        )}
-      />
-      <TextInput 
-      secureTextEntry
-      onChangeText={(text)=>setFirstName(text)}
-      placeholder="hello"
-      style={{
-        borderBottomColor:colors.black,
-        borderBottomWidth:1
-      }}
-      
-      />
-      {
-        fetchedcategories!=[]?
-        (
-        <AppPicker
-          onSelectItem={(item)=>setCategory(item)}
-          items={fetchedcategories}
-          icon="apps"
-          placeholder="Category"
-          selectedItem={category}
-          />
-          ):
-          (<Text>waiting...</Text>)
-      }
-      <AppTextInput icon="email"></AppTextInput>
-      </Screen>
-  );
-    }//end of else
 }
-
 
 const styles = StyleSheet.create({
   container:{
@@ -198,59 +99,3 @@ const styles = StyleSheet.create({
 })
 
 
-
-
-
-
-
-
-
-/*
-
-
-
-//
- <MaterialCommunityIcons name="email" color="dodgerblue" size={200}/>
-     <AppText>Hello s</AppText>
-     <AppButton title="hello world" onPress={()=>fetchcategories_frombackend()}/>
-
-
-
-//
-
-
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-<Text
-     style={{
-       fontSize:50,
-       lineHeight:60,
-       color:'tomato',
-       textAlign:'center'
-     }}>
-      
-Hello There enjoy coding and coffee shopping any time you want ;
-
-     </Text>
-<Text>hello  WOW !</Text>
-      <Button title="hello" onPress={()=>alert('hello')}/>
-      <TouchableOpacity onPress={()=> fetchcategories_frombackend()}>
-
-      <Image 
-    fadeDuration={1000}
-   source={{
-     width:200,
-     height:300, 
-     uri:'https://picsum.photos/200'
-   }}/>
-      </TouchableOpacity>
-      */

@@ -2,8 +2,6 @@ import axios from 'axios';
 
 const BASE_API_URL = 'http://192.168.0.102:8000/api';
 
-//let token = localStorage.getItem('token');
-   // axios.defaults.headers.common['Authorization'] =  'Bearer '+token;
 export default {
     getCategories: () => 
         axios.get(BASE_API_URL+"/categories"),

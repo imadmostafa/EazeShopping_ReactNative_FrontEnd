@@ -29,25 +29,25 @@ const menuItems = [
 ];
 
 function AccountScreen({ navigation }) {
-    const { user, logOut } = useAuth();
+  const { user, logOut } = useAuth();
   return (
     <Screen style={styles.screen}>
-       <Avatar.Image
-            source={{
-              uri:user.user.image_path,
-            }}
-            style={{
-              marginLeft:20
-            }}
-            size={150}
-          />
+      <Avatar.Image
+        source={{
+          uri: user.user.image_path,
+        }}
+        style={{
+          marginLeft: 20
+        }}
+        size={150}
+      />
       <View style={styles.container}>
         <ListItem
           title={user.user.name}
           subTitle={user.user.email}
-         
-          onPress={()=>{
-           // navigation.openDrawer();//for testing purposes ; success result 
+
+          onPress={() => {
+            // navigation.openDrawer();//for testing purposes ; success result 
           }}
         />
       </View>
